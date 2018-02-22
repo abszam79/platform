@@ -4,47 +4,61 @@
   <div class="main-results-container">
     <div class="results-container text-center">
 
-      <h3>Our selection of treehouses</h3>
+      <!-- <h3>Our selection of treehouses</h3> -->
       <div class="filters-bar text-center">
         <%= render "shared/form_index" %>
         <div class="categories-container">
-          <div class="category-item tag lake">
-            <%= image_tag "lake-icon.png", class: "img-icon" %>
-            <h5>Lake</h5>
+
+          <div class="col-xs-6 col-sm-2">
+            <div class="category-item tag lake">
+              <%= image_tag "lake-icon.png", class: "img-icon" %>
+              <h5>Lake</h5>
+            </div>
           </div>
-          <div class="category-item tag family">
-            <%= image_tag "family-icon.png", class: "img-icon" %>
-            <h5>Family</h5>
+          <div class="col-xs-6 col-sm-2">
+            <div class="category-item tag family">
+              <%= image_tag "family-icon.png", class: "img-icon" %>
+              <h5>Family</h5>
+            </div>
           </div>
-          <div class="category-item tag romantic">
-            <%= image_tag "romantic-icon.png", class: "img-icon" %>
-            <h5>Romantic</h5>
+          <div class="col-xs-6 col-sm-2">
+            <div class="category-item tag romantic">
+              <%= image_tag "romantic-icon.png", class: "img-icon" %>
+              <h5>Romantic</h5>
+            </div>
           </div>
-          <div class="category-item tag woods">
-            <%= image_tag "woods-icon.png", class: "img-icon" %>
-            <h5>Woods</h5>
+          <div class="col-xs-6 col-sm-2">
+            <div class="category-item tag woods">
+              <%= image_tag "woods-icon.png", class: "img-icon" %>
+              <h5>Woods</h5>
+            </div>
           </div>
-          <div class="category-item tag mountains">
-            <%= image_tag "mountains-icon.png", class: "img-icon" %>
-            <h5>Mountains</h5>
+          <div class="col-xs-6 col-sm-2">
+            <div class="category-item tag mountains">
+              <%= image_tag "mountains-icon.png", class: "img-icon" %>
+              <h5>Mountains</h5>
+            </div>
           </div>
-          <div class="category-item tag fields">
-            <%= image_tag "fields-icon.png", class: "img-icon" %>
-            <h5>Fields</h5>
+          <div class="col-xs-6 col-sm-2">
+            <div class="category-item tag fields">
+              <%= image_tag "fields-icon.png", class: "img-icon" %>
+              <h5>Fields</h5>
+            </div>
           </div>
+
         </div>
       </div>
       <p class="text-left"><%= @treehouses.length < 2 ? "#{ @treehouses.length } result" : "#{ @treehouses.length } results" %></p>
 
       <div class="results-cards">
         <% @treehouses.each do |treehouse| %>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <%= link_to treehouse_path(@search_params.merge(id: treehouse.id)) do %>
           <div class="results-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path treehouse.photo, height: 300, width: 400, crop: :fill if treehouse.photo.present? %>');">
           </div>
           <div class="results-detail">
             <h4><%= treehouse.title %></h4>
-            <p><span class="light-words">from </span><%= treehouse.price_per_night %>€/night</p>
+              <p><span class="light-words">from </span><%= treehouse.price_per_night %>€/night</p>
           </div>
           <% end %>
         </div>

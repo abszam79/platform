@@ -4,68 +4,111 @@
 <!-- content -->
 
 <div class="main-container">
-  <div class="treehouse-details">
-    <h3>Categories</h3>
 
-    <div class="categories-container">
+  <div class="left-side">
 
-      <% @treehouse.category.split.each do |category| %>
+    <div class="treehouse-details">
+      <h3>Categories</h3>
+      <div class="categories-container-show">
 
-      <div class="category-item tag <%= category %>">
-        <% image_link = "#{category}-icon.png" %>
-        <%= image_tag image_link, class: "img-icon" %>
-        <h5><%= category.capitalize %></h5>
+        <% @treehouse.category.split.each do |category| %>
+
+        <div class="category-item tag <%= category %>">
+          <% image_link = "#{category}-icon.png" %>
+          <%= image_tag image_link, class: "img-icon" %>
+          <h5><%= category.capitalize %></h5>
+        </div>
+        <% end %>
+
       </div>
-      <% end %>
 
+      <hr>
+
+      <h3>Description</h3>
+      <%= @treehouse.description %>
     </div>
 
-    <hr>
+    <div class="booking-cond">
+          <% unless @treehouse.user == current_user %>
+    <div class="journey-request">
 
-    <h3>Description</h3>
-    <%= @treehouse.description %>
+      <!-- bid part -->
+      <div class="bidding-part text-center">
+        <div class="price">
+          <p id="price_per_night"><%= @treehouse.price_per_night%>€ per night</p>
+        </div>
+        <hr>
+        <%= simple_form_for @journey, :url => treehouse_journeys_path(@treehouse), :method => :post, html: {class: 'form-inline custom-select2'} do |f| %>
+        <div class= "form-show-date-wrapper">
+          <label class="label-show"><span>Start date</span></label>
+          <% start_date = Date.parse(params["treehouse_checkin"]) unless params["treehouse_checkin"].blank? %>
+          <%= f.input :checkin, as: :string, required: false, input_html: { id: "range_start", class: "form-show-date", class: "datepicker text-center white", value: start_date }, label: false, placeholder: "CheckIn" %>
+        </div>
+        <div class= "form-show-date-wrapper">
+          <label class="label-show"><span>End date</span></label>
+          <% end_date = Date.parse(params["treehouse_checkout"]) unless params["treehouse_checkout"].blank? %>
+          <%= f.input :checkout, as: :string, required: false, input_html: { id: "range_end", class: "form-show-date", class: "datepicker text-center white", value: end_date }, label: false, placeholder: "CheckOut" %>
+        </div>
+        <div class= "form-show-date-wrapper">
+          <label class="label-show text-center"><span>Guests</span></label>
+          <%= f.input :guests_number, :collection => [1, 2, 3, 4], label: false, prompt: "Guests", selected: params["treehouse_guests_number"], input_html: { style: "width: 100px", class: "text-center" } %>
+        </div>
+        <hr>
+        <div id="total_price">
+        </div>
+        <div class= "form-show-button-wrapper">
+          <%= f.button :submit, "Reservation Request", class: "btn form-show-button" %>
+        </div>
+        <% end %>
+      </div>
+      <!-- fin input bid -->
+      <% end %>
+    </div>
+    </div>
+
   </div>
 
 
-  <% unless @treehouse.user == current_user %>
-  <div class="journey-request">
+  <div class="right-side">
+    <% unless @treehouse.user == current_user %>
+    <div class="journey-request">
 
-    <!-- bid part -->
-    <div class="bidding-part text-center">
-      <div class="price">
-        <p id="price_per_night"><%= @treehouse.price_per_night%>€ per night</p>
+      <!-- bid part -->
+      <div class="bidding-part text-center">
+        <div class="price">
+          <p id="price_per_night"><%= @treehouse.price_per_night%>€ per night</p>
+        </div>
+        <hr>
+        <%= simple_form_for @journey, :url => treehouse_journeys_path(@treehouse), :method => :post, html: {class: 'form-inline custom-select2'} do |f| %>
+        <div class= "form-show-date-wrapper">
+          <label class="label-show"><span>Start date</span></label>
+          <% start_date = Date.parse(params["treehouse_checkin"]) unless params["treehouse_checkin"].blank? %>
+          <%= f.input :checkin, as: :string, required: false, input_html: { id: "range_start", class: "form-show-date", class: "datepicker text-center white", value: start_date }, label: false, placeholder: "CheckIn" %>
+        </div>
+        <div class= "form-show-date-wrapper">
+          <label class="label-show"><span>End date</span></label>
+          <% end_date = Date.parse(params["treehouse_checkout"]) unless params["treehouse_checkout"].blank? %>
+          <%= f.input :checkout, as: :string, required: false, input_html: { id: "range_end", class: "form-show-date", class: "datepicker text-center white", value: end_date }, label: false, placeholder: "CheckOut" %>
+        </div>
+        <div class= "form-show-date-wrapper">
+          <label class="label-show text-center"><span>Guests</span></label>
+          <%= f.input :guests_number, :collection => [1, 2, 3, 4], label: false, prompt: "Guests", selected: params["treehouse_guests_number"], input_html: { style: "width: 50px", class: "text-center" } %>
+        </div>
+        <hr>
+        <div id="total_price">
+        </div>
+        <div class= "form-show-button-wrapper">
+          <%= f.button :submit, "Reservation Request", class: "btn form-show-button" %>
+        </div>
+        <% end %>
       </div>
-
-      <%= simple_form_for @journey, :url => treehouse_journeys_path(@treehouse), :method => :post, html: {class: 'form-inline custom-select2'} do |f| %>
-      <div class= "form-show-date-wrapper">
-        <label class="label-show"><span>Start date</span></label>
-        <% start_date = Date.parse(params["treehouse_checkin"]) unless params["treehouse_checkin"].blank? %>
-        <%= f.input :checkin, as: :string, required: false, input_html: { id: "range_start", class: "form-show-date", class: "datepicker text-center white", value: start_date }, label: false, placeholder: "CheckIn" %>
-      </div>
-      <div class= "form-show-date-wrapper">
-        <label class="label-show"><span>End date</span></label>
-        <% end_date = Date.parse(params["treehouse_checkout"]) unless params["treehouse_checkout"].blank? %>
-        <%= f.input :checkout, as: :string, required: false, input_html: { id: "range_end", class: "form-show-date", class: "datepicker text-center white", value: end_date }, label: false, placeholder: "CheckOut" %>
-      </div>
-      <div class= "form-show-date-wrapper">
-        <label class="label-show text-center"><span>Guests</span></label>
-        <%= f.input :guests_number, :collection => [1, 2, 3, 4], label: false, prompt: "Guests", selected: params["treehouse_guests_number"], input_html: { style: "width: 50px", class: "text-center" } %>
-      </div>
-
-      <br>
-      <div id="total_price">
-      </div>
-      <div class= "form-show-button-wrapper">
-        <%= f.button :submit, "Reservation Request", class: "btn form-show-button" %>
-      </div>
+      <!-- fin input bid -->
       <% end %>
     </div>
-    <!-- fin input bid -->
-    <% end %>
-  </div>
 
+    <div id="map" data-markers="<%= @markers.to_json %>"></div>
+
+  </div>
 
 
 </div>
-
-<div id="map" data-markers="<%= @markers.to_json %>"></div>

@@ -42,18 +42,10 @@
 }
 
 
-.bidding-part{
-  margin: 0px;
-  border: 1px solid #e4e4e4;
-  background-color: #ffffff;
-  margin-left: 30px;
-  border-radius: 5px;
-  padding: 24px 50px;
-}
 
 .price {
   margin-top: 20px;
-
+  padding-top: 10px;
 }
 
 #booking-clean {
@@ -163,10 +155,46 @@
   display: flex;
 }
 
+
 .journey-request {
   flex: 0 0 500px;
-  margin: 50px;
+  margin: 10px;
+  box-shadow: 2px 2px 3px grey;
+  background-color: #ffffff;
 }
+
+
+
+// @media (max-width: 1127px) {
+//   .journey-request {
+//     flex: 0 0 500px;
+//     margin: 10px;
+//     box-shadow: 2px 2px 3px grey;
+//     background-color: #ffffff;
+//     position: sticky !important;
+//     bottom: 0;
+//   }
+// }
+
+// @media only screen and (max-width: 1127px) {
+//     .journey-request {
+//       display: none;
+//         position: absolute;
+//         bottom: auto;
+//         bottom: 10px;
+//         float: bottom;
+//     }
+// }
+
+// @media (max-width: 1127px) {
+//   .bidding-part {
+//     flex: 0 0 500px;
+//     margin: 10px;
+//     box-shadow: 2px 2px 3px grey;
+//     background-color: #ffffff;
+//     float: left;
+//   }
+// }
 
 .treehouse-details {
   flex: 1 1 auto;
@@ -178,6 +206,34 @@
   margin-bottom: 30px;
 }
 
-#map {
-  height: 80vh;
+
+
+
+
+@media (min-width: 1127px){
+  .left-side {
+    width: 66%;
+  }
+
+  .right-side {
+  width: 34%;
 }
+
+  .booking-cond {
+    display: none;
+  }
+
+}
+
+@media (max-width: 1127px){
+  .left-side {
+    width: 100%;
+  }
+
+  .right-side {
+    display: none;
+  }
+
+
+}
+

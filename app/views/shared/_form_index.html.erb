@@ -6,15 +6,15 @@
 
   <% checkin = params[:treehouses][:checkin] if params[:treehouses] %>
   <%= label_tag 'treehouses[checkin]', 'from', class: "label-form-name" %>
-  <%= date_field 'treehouses[checkin]', nil, class: "form-control datepicker text-center label-form-input medium", placeholder: "Checkin", value: checkin %>
+  <%= date_field 'treehouses[checkin]', nil, class: "form-control datepicker text-center label-form-input large", placeholder: "Checkin", value: checkin %>
 
   <% checkout = params[:treehouses][:checkout] if params[:treehouses]%>
   <%= label_tag 'treehouses[checkout]', 'to', class: "label-form-name" %>
-  <%= date_field 'treehouses[checkout]', nil, class: "form-control datepicker text-center label-form-input medium", placeholder: "Checkout", value: checkout %>
+  <%= date_field 'treehouses[checkout]', nil, class: "form-control datepicker text-center label-form-input large", placeholder: "Checkout", value: checkout %>
 
   <% guests_number = params[:treehouses][:guests_number] if params[:treehouses] %>
   <%= label_tag 'treehouses[guests_number]', 'for', class: "label-form-name" %>
-  <%= select_tag 'treehouses[guests_number]', options_for_select([['1'], ['2'], ['3'], ['4']], guests_number), class: "form-control text-center label-form-input small unselected", prompt: "Guests" %>
+  <%= select_tag 'treehouses[guests_number]', options_for_select([['1'], ['2'], ['3'], ['4'], ['5'], ['6+']], guests_number), class: "form-control text-center label-form-input large unselected", prompt: "Guests" %>
 
   <%= submit_tag "Refresh", class: "btn refresh-btn" %>
 <% end %>
